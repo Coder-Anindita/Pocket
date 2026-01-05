@@ -16,6 +16,7 @@ const protectedFunction=async(req,res,next)=>{
             return res.status(401).json({message:"Unauthorized: No user found"})
 
         }
+        req.user=user
         next()
         
 

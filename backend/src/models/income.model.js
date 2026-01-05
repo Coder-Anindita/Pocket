@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
-import { User } from "./user.model"
+
 
 const incomeSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:User,
+        ref:"User",
         required:true
     },
     amount:{
@@ -15,6 +15,7 @@ const incomeSchema=new mongoose.Schema({
     category:{
         type:String,
         required:true
+    
     },
     date:{
         type:Date,

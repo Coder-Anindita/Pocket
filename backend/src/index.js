@@ -7,7 +7,7 @@ import cors from "cors"
 import connectToDb from "./db/connectToDb.js"
 import sendUserSample from "./controllers/sendUserSample.controller.js"
 import authRoutes from "./routes/auth.route.js"
-
+import incomeRoutes from "./routes/income.route.js"
 
 
 
@@ -28,6 +28,7 @@ connectToDb()
 .then(()=>{
     // app.post("/sample",sendUserSample)
     app.use("/api/auth", authRoutes);
+    app.use("/api/income",incomeRoutes)
 
     app.listen(PORT,()=>{
         console.log(`Listening to port ${PORT}`)

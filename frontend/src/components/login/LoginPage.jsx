@@ -8,7 +8,7 @@ export default function LoginPage(){
             <div className="row ">
                 <div className="col-sm-12 col-lg-6 ">
                     <div>
-                        <img src="public/images/logo.svg" className="object-fit-contain " style={{width:"30%"}}></img>
+                        <img src="public/images/logo.svg" className="object-fit-contain " style={{width:"150px"}}></img>
                     </div>
                     <img src="public/images/Hero1.svg" className="object-fit-contain mt-2" style={{width:"95%"}}></img>
 

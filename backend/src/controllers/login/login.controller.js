@@ -26,8 +26,9 @@ const login=async (req,res)=>{
         }
         
         const token = generateToken(existingUser._id);
+        existingUser.password = undefined;
         return res.cookie("token",token,cookieOptions)
-        .status(200).json({message:"User logged in sucessfully"})
+        .status(200).json({message:"User logged in sucessfully",user:existingUser})
 
     }
     catch(err){

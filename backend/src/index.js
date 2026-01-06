@@ -9,7 +9,7 @@ import sendUserSample from "./controllers/sendUserSample.controller.js"
 import authRoutes from "./routes/auth.route.js"
 import incomeRoutes from "./routes/income.route.js"
 import expenseRoutes from "./routes/expense.route.js"
-
+import userRoutes from "./routes/user.route.js"
 
 
 const app=express()
@@ -31,7 +31,7 @@ connectToDb()
     app.use("/api/auth", authRoutes);
     app.use("/api/income",incomeRoutes)
     app.use("/api/expense",expenseRoutes);
-
+    app.use("/api/me",userRoutes)
     app.listen(PORT,()=>{
         console.log(`Listening to port ${PORT}`)
     })

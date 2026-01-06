@@ -1,6 +1,7 @@
-import { Income } from "../../models/income.model.js"
+import { Expense } from "../../models/expense.model.js";
 
-const addIncome=async(req,res)=>{
+
+const addExpense=async(req,res)=>{
     try{
         const {source,amount,date}=req.body
         if(!source){
@@ -13,17 +14,14 @@ const addIncome=async(req,res)=>{
             return res.status(400).json({message:"Date is required"})
         }
 
-        const newIncome=await Income.create({user:req.user._id,source,amount,date})
-        return res.status(200).json({message:"Income added Sucessfully"})
-
+        const expense=await Expense.create({source:source,amount:amount,date:date,user:req.user._id})
+        return res.status(200).json({message:"Expense added sucessfully"})
         
     }
     catch(err){
-        //return res.status(500).json({message:"Error while adding income"})
-        throw(err)
+        return res.status(500).json({message:"Error in adding expense"})
 
     }
-    
 
 }
-export default addIncome
+export default addExpense

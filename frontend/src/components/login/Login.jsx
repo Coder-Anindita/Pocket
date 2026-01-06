@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {Link} from "react-router-dom"
-export default function Signup() {
-  const [username, setUsername] = useState("");
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -11,17 +10,17 @@ export default function Signup() {
     setSubmitted(true);
 
     
-    if (!username || !email || password.length < 8) return;
+    if (!email || password.length < 8) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
+      const res = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+
         },
         credentials: "include",
         body: JSON.stringify({
-          username,
           email,
           password
         })
@@ -35,46 +34,17 @@ export default function Signup() {
   };
 
   return (
-    <div className="container  px-3 " >
-      <form onSubmit={handleOnSubmit} noValidate className="mt-5 mx-5 ">
-        <div className="row  ">
-          <h1 className="fs-4">Create an Account</h1>
-          <p style={{fontSize:"13px"}}>Join us today by entering your details below.</p>
-        </div>
-        <div className="row ">
-            <div className="mb-3 col text-center">
-                <div className="">
-                    <img src="https://res.cloudinary.com/duqw6udje/image/upload/v1767543185/Pocket_Dev/nlpftpkamkedl5qhyagt.jpg" className="rounded-3 object-fit-contain" style={{width:"100px", height:"100px"}}></img>
-                </div>
-                <label className="form-label">Profile Picture</label>
-                <input
-                    type="file"
-                    className="form-control"
-                    name="profileImage"
-                />
+    <div className="container mt-4">
+      <form onSubmit={handleOnSubmit} noValidate>
+        
+        <div className=" row mb-4">
+            <div className="row  ">
+                <h1 className="fs-4">Welcome Back</h1>
+                <p style={{fontSize:"13px"}}>Please enter your details to log in</p>
             </div>
-        </div>
-        <div className=" row mb-3">
-            <div className="col-lg-6">
-                <label className="form-label">Username</label>
-                <input
-                type="text"
-                className={`form-control ${
-              submitted && !username ? "is-invalid" : ""
-                }`}
-                placeholder="John"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-                <div className="invalid-feedback">
-                    Username is required
-                </div>
-                <div className="valid-feedback">
-                    Username looks good!
-                </div>
 
-            </div>
-            <div className="col-lg-6">
+            
+            <div className="col">
                 <label className="form-label">Email Address</label>
                 <input
                     type="email"
@@ -101,7 +71,7 @@ export default function Signup() {
         </div>
 
         {/* Password */}
-        <div className="row mb-3">
+        <div className="row mb-4">
           <div className="col">
             <label className="form-label">Password</label>
             <input
@@ -132,9 +102,9 @@ export default function Signup() {
                 
             </button>
         </div>
-        <div className="row mt-3 ">
-            <div className="col ">
-                Already have an account? <Link to="/login">Login</Link>
+        <div className="row mt-3">
+            <div className="col">
+                Don't have an account? <Link to="/signup">SignUp</Link>
             </div>
         </div>
       </form>

@@ -1,11 +1,19 @@
-import Signup from "./components/signup/SignUp.jsx"
 
+import { Routes,Route } from "react-router-dom"
+import SignupPage from "./components/signup/SignupPage.jsx"
+import LoginPage from "./components/login/LoginPage.jsx"
 
 function App() {
   
 
   return (
-    <Signup/>
+    <Routes>
+      <Route path="/login" element={<LoginPage/>}></Route>
+      <Route path="/signup" element={<SignupPage/>}></Route>
+
+      
+    </Routes>
+    
   )
 }
 

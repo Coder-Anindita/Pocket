@@ -21,7 +21,8 @@ const expenseSchema=new mongoose.Schema({
 
     },
     emoji:{
-        type:String
+        type:String,
+        default:"💸"
     }
 
 },{timestamps:true})

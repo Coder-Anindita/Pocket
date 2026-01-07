@@ -38,7 +38,7 @@ export default function SideMenu(){
             <div className="mt-3">
                 <div className="my-3" >
                     <NavLink
-                        to="/dashboard" className="border"
+                        to="/" className="border"
                         style={({ isActive }) => ({
                         display: "flex",
                         alignItems: "center",

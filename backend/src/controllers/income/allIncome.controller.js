@@ -1,23 +1,27 @@
 import { Income } from "../../models/income.model.js";
 
+const allIncome = async (req, res) => {
+  try {
+    const limit = req.query.limit ? Number(req.query.limit) : null;
 
-const allIncome=async(req,res)=>{
-    try{
-        const allIncomes=await Income.find({user:req.user._id})
-        if(!allIncomes){
-            return res.status(400).json("No income found")
-        }
-        if(allIncomes.length===0){
-            return res.status(400).json({message:"No income found"})
-        }
-        return res.status(200).json({message:"All income retrived sucessfully",allIncomes:allIncomes})
+    let query = Income.find({ user: req.user._id })
+      .sort({ createdAt: -1 });
 
+    if (limit) {
+      query = query.limit(limit);
     }
-    catch(err){
-        return res.status(500).json({message:"Some error occured"})
 
-    }
-    
+    const allIncomes = await query;
 
-}
-export default allIncome
+    return res.status(200).json({
+      message: "All income retrieved successfully",
+      allIncomes,
+    });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Some error occurred" });
+  }
+};
+
+export default allIncome;

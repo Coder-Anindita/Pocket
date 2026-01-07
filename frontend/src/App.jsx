@@ -10,15 +10,16 @@ function App() {
   
 
   return (
-    // <Routes>
-    //   <Route path="/login" element={<LoginPage/>}></Route>
-    //   <Route path="/signup" element={<SignupPage/>}></Route>
+    <Routes>
+      <Route path="/login" element={<LoginPage/>}></Route>
+      <Route path="/signup" element={<SignupPage/>}></Route>
+      //<Route path="/dashboard" element={<DashboardPage/>}/>
 
       
-    // </Routes>
+    </Routes>
     //<Header/>
     //<SideMenu/>
-    <DashboardPage/>
+    //<DashboardPage/>
     
   )
 }

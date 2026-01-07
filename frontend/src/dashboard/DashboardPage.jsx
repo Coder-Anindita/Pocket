@@ -3,9 +3,37 @@ import SideMenu from "./SideMenu";
 import { CiCreditCard1 } from "react-icons/ci";
 import { IoWalletOutline } from "react-icons/io5";
 import { GiPayMoney } from "react-icons/gi";
+import { IoMdTrendingDown } from "react-icons/io";
+import { HiMiniArrowTrendingUp } from "react-icons/hi2";
 import SmallCards from "./SmallCards";
+import useDashboardData from "../hooks/useDashboardData.js";
+import Card from "./Card.jsx";
+import { useEffect } from "react";
+import useRecentExpense from "../hooks/useRecentExpense.js";
+import useRecentIncome from "../hooks/useRecentIncome.js";
 
 export default function DashboardPage(){
+    const {income,expense}=useDashboardData()
+    let totalIncome=0;
+    income.forEach(item=>{
+        totalIncome+=(item.amount)
+    })
+
+    let totalExpense=0;
+    expense.forEach(item=>{
+        totalExpense+=item.amount
+    })
+
+
+
+    const recentExpense=useRecentExpense()
+    const recentIncome=useRecentIncome()
+
+
+
+
+
+    const balance=totalIncome-totalExpense
     return(
         <div className="">
             <div className="row">
@@ -19,16 +47,29 @@ export default function DashboardPage(){
                 <div className="col-lg-9 col-sm-12">
                     <div className="row">
                         <div className="col">
-                            <SmallCards Component={CiCreditCard1 } type={"Total Balance"} amount={"4000"} color={"#0d6efd"}/>
+                            <SmallCards Component={CiCreditCard1 } type={"Total Balance"} amount={balance} color={"#0d6efd"}/>
 
                         </div>
                         <div className="col">
-                            <SmallCards Component={IoWalletOutline} type={"Total Income"} amount={"10000"} color={"#FFA500"}/>
+                            <SmallCards Component={IoWalletOutline} type={"Total Income"} amount={totalIncome} color={"#FFA500"}/>
                         </div>
                         <div className="col">
-                            <SmallCards Component={GiPayMoney} type={"Total Expense"} amount={"6000"} color={"#F40D30"}/>
+                            <SmallCards Component={GiPayMoney} type={"Total Expense"} amount={totalExpense} color={"#F40D30"}/>
 
                         </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-6 col-sm-12 mt-4">
+                            <Card Component={IoMdTrendingDown} data={recentExpense} isExpense={true}/>
+                            
+
+                        </div>
+                        <div className="row">
+                            <div className="col-lg-6 col-sm-12 mt-4">
+                                <Card Component={HiMiniArrowTrendingUp } data={recentIncome} isExpense={false}/>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

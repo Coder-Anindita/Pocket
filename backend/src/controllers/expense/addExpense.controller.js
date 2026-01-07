@@ -3,7 +3,7 @@ import { Expense } from "../../models/expense.model.js";
 
 const addExpense=async(req,res)=>{
     try{
-        const {source,amount,date}=req.body
+        const {source,amount,date,emoji}=req.body
         if(!source){
             return res.status(400).json({message:"source is required"})
         }
@@ -13,8 +13,12 @@ const addExpense=async(req,res)=>{
         if(!date){
             return res.status(400).json({message:"Date is required"})
         }
+        if(!emoji){
+            return res.status(400).json({message:"Emoji is required"})
 
-        const expense=await Expense.create({source:source,amount:amount,date:date,user:req.user._id})
+        }
+
+        const expense=await Expense.create({emoji:emoji,source:source,amount:amount,date:date,user:req.user._id})
         return res.status(200).json({message:"Expense added sucessfully"})
         
     }

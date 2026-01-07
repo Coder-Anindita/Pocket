@@ -4,6 +4,7 @@ import SignupPage from "./components/signup/SignupPage.jsx"
 import LoginPage from "./components/login/LoginPage.jsx"
 import Header from "./dashboard/Header.jsx"
 import SideMenu from "./dashboard/SideMenu.jsx"
+import DashboardPage from "./dashboard/DashboardPage.jsx"
 
 function App() {
   
@@ -16,7 +17,8 @@ function App() {
       
     // </Routes>
     //<Header/>
-    <SideMenu/>
+    //<SideMenu/>
+    <DashboardPage/>
     
   )
 }

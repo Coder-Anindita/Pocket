@@ -4,7 +4,7 @@ export default function Header(){
             <div className="row">
                 
                     <div>
-                        <img src="public/images/logo.svg" className="object-fit-contain " style={{width:"150px"}}></img>
+                        <img src="public/images/logo.svg" className="object-fit-contain " style={{width:"140px"}}></img>
                     </div>
                 
             </div>

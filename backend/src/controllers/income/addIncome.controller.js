@@ -18,7 +18,7 @@ const addIncome=async(req,res)=>{
 
 
         const newIncome=await Income.create({user:req.user._id,source,amount,date,emoji})
-        return res.status(200).json({message:"Income added Sucessfully"})
+        return res.status(200).json({message:"Income added Sucessfully",newIncome:newIncome})
 
         
     }

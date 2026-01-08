@@ -1,6 +1,6 @@
 export default function Header(){
     return(
-        <div className="border">
+        <div className="border-bottom">
             <div className="row">
                 
                     <div>

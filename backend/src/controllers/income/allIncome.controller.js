@@ -5,7 +5,7 @@ const allIncome = async (req, res) => {
     const limit = req.query.limit ? Number(req.query.limit) : null;
 
     let query = Income.find({ user: req.user._id })
-      .sort({ createdAt: -1 });
+      .sort({ date: -1 });
 
     if (limit) {
       query = query.limit(limit);

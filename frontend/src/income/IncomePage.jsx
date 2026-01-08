@@ -1,0 +1,72 @@
+import useAllIncome from "../hooks/useAllIncome";
+import Header from "../dashboard/Header.jsx"
+import LineGraph from "./LineGraph";
+import SideMenu from "../dashboard/SideMenu.jsx";
+import IncomeSources from "./IncomeSources.jsx";
+import { FaPlus } from "react-icons/fa6"
+import { useState,useEffect } from "react";
+import AddIncomeModal from "./AddIncomeModal.jsx";
+
+
+
+
+
+
+export default function IncomePage(){
+    const [showModal, setShowModal] = useState(false);
+    const [refresh, setRefresh] = useState(false);
+    
+    
+    const income=useAllIncome(refresh)
+    
+    
+
+    
+    return(
+        <div className="px-3 mb-5">
+            <div className="row">
+                <Header/>
+
+            </div>
+            <div className="row ms-lg-1 ">
+                <div className="col-lg-3 col-sm-12  rounded-2 border-end " >
+                    <SideMenu/>
+                </div>
+                <div className="col-lg-9 col-sm-12 ">
+                    <div className="row mt-3 mx-2 p-5 border rounded-2 shadow  ">
+                        <div className="d-flex " >
+                            <div  className="mb-2">
+                                <h1 className="fs-4 mb-0 ">Income Overview</h1>
+                                <p className="text-secondary " style={{fontSize:"13px"}}>Track your earnings over time and analyze your income trends.</p>
+                            </div>
+                            <p className=" ms-auto  " style={{fontSize:"13px"}}>
+                                <button className="btn btn-primary  " style={{height:"35px"}} onClick={()=>setShowModal(true)} ><FaPlus /> Add income</button>
+                                <AddIncomeModal
+                                    show={showModal}
+                                    onClose={() => {setShowModal(false); setRefresh(prev => !prev); }}
+                                    
+                                />
+
+                            </p>
+                        </div>
+                        <div className="" style={{height:"300px"}}>
+                            <LineGraph allIncomes={income}/>
+                        </div>
+                    
+                    
+                    
+                    
+
+
+                    </div>
+                    <div className="row mt-5 mx-3">
+                        <div className=""><IncomeSources data={income}/></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    )
+}

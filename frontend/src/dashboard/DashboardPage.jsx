@@ -11,6 +11,9 @@ import Card from "./Card.jsx";
 import { useEffect } from "react";
 import useRecentExpense from "../hooks/useRecentExpense.js";
 import useRecentIncome from "../hooks/useRecentIncome.js";
+import ExpenseBarChart from "./ExpenseBarChart.jsx";
+import IncomeBarChart from "./IncomeBarChart.jsx";
+import FinancialOverview from "./FinancialOverview.jsx";
 
 export default function DashboardPage(){
     const {income,expense}=useDashboardData()
@@ -27,6 +30,7 @@ export default function DashboardPage(){
 
 
     const recentExpense=useRecentExpense()
+    
     const recentIncome=useRecentIncome()
 
 
@@ -35,7 +39,7 @@ export default function DashboardPage(){
 
     const balance=totalIncome-totalExpense
     return(
-        <div className="">
+        <div className="px-3 mb-5">
             <div className="row">
                 <Header/>
 
@@ -45,6 +49,7 @@ export default function DashboardPage(){
                     <SideMenu/>
                 </div>
                 <div className="col-lg-9 col-sm-12">
+                    
                     <div className="row">
                         <div className="col">
                             <SmallCards Component={CiCreditCard1 } type={"Total Balance"} amount={balance} color={"#0d6efd"}/>
@@ -58,15 +63,32 @@ export default function DashboardPage(){
 
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row mt-5 mb-4 ">
+                        <h1 className="fs-4 text-center pb-1">Financial Overview</h1>
+                        <FinancialOverview income={totalIncome} expense={totalExpense} />
+
+                    </div>
+                    <div className="row ">
                         <div className="col-lg-6 col-sm-12 mt-4">
                             <Card Component={IoMdTrendingDown} data={recentExpense} isExpense={true}/>
                             
 
                         </div>
+                        <div className="col-lg-6 col-sm-12 mt-5">
+                            <div className="container border shadow m-2 p-4" >
+                                <h1 className="text-center fs-5">Recent Expenses</h1>
+                                <ExpenseBarChart data={recentExpense} />
+                            </div>
+                        </div>
                         <div className="row">
                             <div className="col-lg-6 col-sm-12 mt-4">
                                 <Card Component={HiMiniArrowTrendingUp } data={recentIncome} isExpense={false}/>
+                            </div>
+                            <div className="col-lg-6 col-sm-12 mt-5">
+                                <div className="container border shadow m-2 p-4" >
+                                    <h1 className="text-center fs-5">Recent Incomes</h1>
+                                    <IncomeBarChart data={recentIncome} />
+                                </div>
                             </div>
                         </div>
 

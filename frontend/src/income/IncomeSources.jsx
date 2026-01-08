@@ -1,24 +1,20 @@
-import {useState,useEffect} from "react"
-import { NavLink } from "react-router-dom"
-import { MdArrowRightAlt } from "react-icons/md";
 
-export default function Card({Component,data=[],isExpense=true} ){
+import { NavLink } from "react-router-dom"
+import { RiDeleteBin6Line } from "react-icons/ri"
+import { HiMiniArrowTrendingUp } from "react-icons/hi2";
+export default function IncomeSources({data=[]} ){
 
 
     return(
         <div className="container shadow border rounded-3 p-4">
             <div className="d-flex align-items-center ">
-                {isExpense?(<h1 className="mb-0 fs-3 mb-4">Expense</h1>):(<h1 className="mb-0 fs-3 mb-4">Income</h1>)}
+                <h1 className="mb-0 fs-3 mb-4">Income Sources</h1>
                 
-
-                <NavLink to="" className="ms-auto px-2 rounded text-center" style={{backgroundColor:"#eeeeee",textDecoration: "none"}}>
-                    See All <MdArrowRightAlt />
-                </NavLink>
             </div>
             
             {data.length===0?(
                 <p className="text-center mt-4 ">
-                    No recent {isExpense ? "expenses" : "income"}
+                    No recent income
                 </p>
                 
             ):(
@@ -38,11 +34,17 @@ export default function Card({Component,data=[],isExpense=true} ){
                     </div>
 
                 
-                    
-                        <p className="ms-auto mb-0 fs-6 px-4  rounded" style={isExpense? {backgroundColor:"#ffdddd" ,color:"#ED1C24"}:{backgroundColor:"#e0f0e3" ,color:"#03C03C"}}>
-                        ₹{item.amount.toLocaleString("en-IN")}
-                        {<Component/>}
-                        </p>
+                        <div className="ms-auto mb-0 d-flex">
+                            <span className="px-3 " style={{fontSize:"20px"}}>
+                                <RiDeleteBin6Line />
+                            </span>
+                            <p className=" mb-0 fs-6 px-4  rounded" style={{backgroundColor:"#e0f0e3" ,color:"#03C03C"}}>
+                            
+                                ₹{item.amount.toLocaleString("en-IN")} <HiMiniArrowTrendingUp/>
+                        
+                            </p>
+                        </div>
+                        
                     
                 </div>
         )))}

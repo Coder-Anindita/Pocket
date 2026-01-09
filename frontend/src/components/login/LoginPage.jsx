@@ -1,6 +1,6 @@
 import Login from "./Login";
 
-import hero from "../../assets/Hero1.svg"
+import hero1 from "../assets/Hero1.svg";
 export default function LoginPage(){
     return(
         <div className="container">
@@ -8,7 +8,7 @@ export default function LoginPage(){
             <div className="row ">
                 <div className="col-sm-12 col-lg-6 ">
                     <div>
-                        <img src={hero} className="object-fit-contain " style={{width:"150px"}}></img>
+                        <img src={hero1} className="object-fit-contain " style={{width:"150px"}}></img>
                     </div>
                     <img src="public/images/Hero1.svg" className="object-fit-contain mt-2" style={{width:"95%"}}></img>
 

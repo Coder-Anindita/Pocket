@@ -14,7 +14,11 @@ import userRoutes from "./routes/user.route.js"
 
 const app=express()
 app.use(cors({
-    origin: "https://pocket-green.vercel.app",
+    origin: [
+    "https://pocket-git-main-anindita-chakrabortys-projects.vercel.app",
+    "https://pocket-green.vercel.app",
+    "http://localhost:5173"
+  ],
     credentials: true,
 }))
 app.use(express.json())

@@ -1,4 +1,4 @@
-import logo from "../assets/logo.svg"
+import logoImage from "../assets/logo.svg"
 
 
 export default function Header(){
@@ -7,7 +7,7 @@ export default function Header(){
             <div className="row">
                 
                     <div>
-                        <img src={logo} className="object-fit-contain " style={{width:"140px"}}></img>
+                        <img src={logoImage} className="object-fit-contain " style={{width:"140px"}}></img>
                     </div>
                 
             </div>

@@ -1,6 +1,6 @@
 import Login from "./Login";
 
-import hero from "../../assets/Hero1.jpg"
+import hero from "../../assets/Hero1.svg"
 import logo from "../../assets/logo.svg"
 export default function LoginPage(){
     return(

@@ -14,12 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
+
 function App() {
   
 
   return (
     <>
     <Routes>
+      <Route path="/" element={<SignupPage/>}/>
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/signup" element={<SignupPage/>}></Route>
       <Route path="/dashboard" element={<ProtectedRoute><DashboardPage/></ProtectedRoute>}/>

@@ -4,13 +4,14 @@ import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { HiMiniArrowTrendingUp } from "react-icons/hi2";
 import {toast} from "react-toastify"
+
 export default function IncomeSources({data=[],onSave} ){
     const [showConfirm, setShowConfirm] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
     const onDeleteHandler=async()=>{
         
         try{
-            const res=await fetch(`http://localhost:3000/api/income/${selectedId}`,{
+            const res=await fetch(`https://pocket-vycm.onrender.com/api/income/${selectedId}`,{
                 method:"DELETE",
                 credentials: "include",
             

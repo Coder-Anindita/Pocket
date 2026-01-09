@@ -7,7 +7,7 @@ export default function useAllExpense(refresh){
         
             const fetchData=async()=>{
                 try{
-                    const expense=await fetch("http://localhost:3000/api/expense",{
+                    const expense=await fetch("https://pocket-vycm.onrender.com/api/expense",{
                         credentials:"include"
                     })
                     const expenseData=await expense.json()

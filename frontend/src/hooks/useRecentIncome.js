@@ -5,7 +5,7 @@ export default function useRecentIncome(){
     useEffect(()=>{
         const fetchData=async()=>{
             try{
-                const resIncome=await fetch("http://localhost:3000/api/income?limit=4",{
+                const resIncome=await fetch("https://pocket-vycm.onrender.com/api/income?limit=4",{
                     credentials:"include",
                 })
                 const incomeData=await resIncome.json()

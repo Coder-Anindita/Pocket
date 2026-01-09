@@ -27,7 +27,7 @@ export default function Signup() {
         formData.append("profileImage",profileImage)
       }
       
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
+      const res = await fetch("https://pocket-vycm.onrender.com/api/auth/signup", {
         method: "POST",
         
         credentials: "include",

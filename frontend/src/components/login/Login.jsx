@@ -15,7 +15,7 @@ export default function Login() {
     if (!email || password.length < 8) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/login", {
+      const res = await fetch("https://pocket-vycm.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

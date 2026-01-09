@@ -7,7 +7,7 @@ export default function useRecentExpense(){
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const expenseRes = await fetch("http://localhost:3000/api/expense?limit=4", {
+                const expenseRes = await fetch("https://pocket-vycm.onrender.com/api/expense?limit=4", {
                 credentials:"include",
                 });
                 const expenseData = await expenseRes.json();

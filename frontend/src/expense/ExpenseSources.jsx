@@ -10,7 +10,7 @@ export default function ExpenseSources({data=[],onSave} ){
     const onDeleteHandler=async()=>{
         
         try{
-            const res=await fetch(`http://localhost:3000/api/expense/${selectedId}`,{
+            const res=await fetch(`https://pocket-vycm.onrender.com/api/expense/${selectedId}`,{
                 method:"DELETE",
                 credentials: "include",
             

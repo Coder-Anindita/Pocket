@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import image404 from "/assets/404.svg"
+import image404 from "../assets/404.svg"
 export default function Page404(){
     return(
         <div className="container px-2 pb-5 mb-5 mx-2">

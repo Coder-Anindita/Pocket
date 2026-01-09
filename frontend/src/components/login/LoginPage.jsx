@@ -1,6 +1,6 @@
 import Login from "./Login";
 
-import hero1 from "../assets/Hero1.svg";
+import hero1 from "../../assets/Hero1.svg";
 export default function LoginPage(){
     return(
         <div className="container">

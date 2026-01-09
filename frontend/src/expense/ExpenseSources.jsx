@@ -1,16 +1,16 @@
 
-import { useState } from "react";
-import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import { RiDeleteBin6Line } from "react-icons/ri"
-import { HiMiniArrowTrendingUp } from "react-icons/hi2";
-import {toast} from "react-toastify"
-export default function IncomeSources({data=[],onSave} ){
+import { IoMdTrendingDown } from "react-icons/io";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import ConfirmDeleteModal from "../income/ConfirmDeleteModal";
+export default function ExpenseSources({data=[],onSave} ){
     const [showConfirm, setShowConfirm] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
     const onDeleteHandler=async()=>{
         
         try{
-            const res=await fetch(`http://localhost:3000/api/income/${selectedId}`,{
+            const res=await fetch(`http://localhost:3000/api/expense/${selectedId}`,{
                 method:"DELETE",
                 credentials: "include",
             
@@ -18,16 +18,17 @@ export default function IncomeSources({data=[],onSave} ){
             },
             
             
+            
 
             )
             if(res.ok){
-                toast.success("Income deleted successfully")
+                toast.success("Expense deleted successfully")
+                onSave()
             }
             else{
-                toast.error("Failed to delete income")
-                
+                toast.error("Failed to delete")
             }
-            onSave()
+            
             setShowConfirm(false)
             setSelectedId(null)
         }
@@ -43,13 +44,13 @@ export default function IncomeSources({data=[],onSave} ){
     return(
         <div className="container shadow border rounded-3 p-4">
             <div className="d-flex align-items-center ">
-                <h1 className="mb-0 fs-3 mb-4">Income Sources</h1>
+                <h1 className="mb-0 fs-3 mb-4">Expense Sources</h1>
                 
             </div>
             
             {data.length===0?(
                 <p className="text-center mt-4 ">
-                    No recent income
+                    No recent expense
                 </p>
                 
             ):(
@@ -70,20 +71,26 @@ export default function IncomeSources({data=[],onSave} ){
 
                 
                         <div className="ms-auto mb-0 d-flex">
-                            <span className="px-3 btn btn-light me-3" style={{fontSize:"20px"}} onClick={()=>{setSelectedId(item._id); setShowConfirm(true)}}>
+                            <span className="px-3 btn btn-light me-3" style={{fontSize:"20px"}} onClick={()=>{setSelectedId(item._id);setShowConfirm(true);}}>
                                 <RiDeleteBin6Line />
                             </span>
-                            <ConfirmDeleteModal show={showConfirm} onClose={()=>setShowConfirm(false)} onConfirm={onDeleteHandler}/>
-                            <p className=" mb-0 fs-6 px-4  rounded" style={{backgroundColor:"#e0f0e3" ,color:"#03C03C"}}>
                             
-                                ₹{item.amount.toLocaleString("en-IN")} <HiMiniArrowTrendingUp/>
+                            <p className=" mb-0 fs-6 px-4  rounded" style={{backgroundColor:"#ffdddd" ,color:"#ED1C24"}}>
+                            
+                                ₹{item.amount.toLocaleString("en-IN")} <IoMdTrendingDown />
                         
                             </p>
                         </div>
+
                         
                     
                 </div>
         )))}
+            <ConfirmDeleteModal
+                show={showConfirm}
+                onClose={() => setShowConfirm(false)}
+                onConfirm={onDeleteHandler}
+            />
         </div>
     )
 }

@@ -70,7 +70,7 @@ export default function DashboardPage(){
                     </div>
                     <div className="row ">
                         <div className="col-lg-6 col-sm-12 mt-4">
-                            <Card Component={IoMdTrendingDown} data={recentExpense} isExpense={true}/>
+                            <Card Component={IoMdTrendingDown} data={recentExpense} isExpense={true} />
                             
 
                         </div>
@@ -82,7 +82,7 @@ export default function DashboardPage(){
                         </div>
                         <div className="row">
                             <div className="col-lg-6 col-sm-12 mt-4">
-                                <Card Component={HiMiniArrowTrendingUp } data={recentIncome} isExpense={false}/>
+                                <Card Component={HiMiniArrowTrendingUp } data={recentIncome} isExpense={false} URL="/income"/>
                             </div>
                             <div className="col-lg-6 col-sm-12 mt-5">
                                 <div className="container border shadow m-2 p-4" >

@@ -1,10 +1,10 @@
 import { useState } from "react";
-
+import { toast } from "react-toastify";
 import EmojiPicker from "emoji-picker-react";
-import {toast} from "react-toastify"
 
-function AddIncomeModal({ show,onClose }) {
-    const [income, setIncome] = useState({
+
+function AddExpenseModal({ show,onClose }) {
+    const [expense, setExpense] = useState({
         amount: "",
         source: "",
         date: "",
@@ -15,27 +15,28 @@ function AddIncomeModal({ show,onClose }) {
 
     const handleOnSubmit=async()=>{
         try {
-            const res = await fetch("http://localhost:3000/api/income", {
+            const res = await fetch("http://localhost:3000/api/expense", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     
                 },
                 credentials: "include",
-                body: JSON.stringify(income),
+                body: JSON.stringify(expense),
             });
             if(res.ok){
-                toast.success("Income added successfully!")
+                toast.success("Expense added successfully")
+
             }
             else{
-                toast.error("Failed to add income")
+                toast.error("Failed to delete the income")
             }
 
             const data = await res.json();
 
 
             
-             ///just to rerender
+             
             onClose();
         } catch (err) {
             toast.error("OOPS! Some error occured!")
@@ -54,7 +55,7 @@ function AddIncomeModal({ show,onClose }) {
         <div className="modal-content">
 
           <div className="modal-header">
-            <h5 className="modal-title">Add Income</h5>
+            <h5 className="modal-title">Add Expense</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
 
@@ -68,14 +69,14 @@ function AddIncomeModal({ show,onClose }) {
                         className="btn btn-light fs-3 mx-4"
                         onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                     >
-                        {income.emoji}
+                        {expense.emoji}
                     </button>
 
                 {showEmojiPicker && (
                     <div style={{ position: "absolute", zIndex: 2000 }}>
                     <EmojiPicker
                         onEmojiClick={(emojiData) => {
-                        setIncome(prev => ({
+                        setExpense(prev => ({
                             ...prev,
                             emoji: emojiData.emoji,
                         }));
@@ -94,24 +95,24 @@ function AddIncomeModal({ show,onClose }) {
                     type="number"
                     className="form-control mb-3 "
                     placeholder="Amount"
-                    onChange={e => setIncome({ ...income, amount: e.target.value })}
+                    onChange={e => setExpense({ ...expense, amount: e.target.value })}
                     required
                     min={0}
                 />
 
-                <label className="fs-6">Income Source</label>
+                <label className="fs-6">Expense Source</label>
                 <input
                     type="text"
                     className="form-control mb-3"
-                    placeholder="Source (Salary,Freelance)"
-                    onChange={e => setIncome({ ...income, source: e.target.value })}
+                    placeholder="Movie,food...."
+                    onChange={e => setExpense({ ...expense, source: e.target.value })}
                     required
                 />
                 <label className="fs-6">Date</label>
                 <input
                     type="date"
                     className="form-control mb-3"
-                    onChange={e => setIncome({ ...income, date: e.target.value })}
+                    onChange={e => setExpense({ ...expense, date: e.target.value })}
                     required
                     
                 />
@@ -123,7 +124,7 @@ function AddIncomeModal({ show,onClose }) {
             </button>
 
             <button className="btn btn-success" onClick={handleOnSubmit}>
-                Add Income
+                Add Expense
             </button>
           </div>
 
@@ -133,4 +134,4 @@ function AddIncomeModal({ show,onClose }) {
   );
 }
 
-export default AddIncomeModal;
+export default AddExpenseModal;

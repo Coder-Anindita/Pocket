@@ -1,10 +1,14 @@
 import { useState } from "react";
 import {Link} from "react-router-dom"
+import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
+  
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -14,22 +18,35 @@ export default function Signup() {
     if (!username || !email || password.length < 8) return;
 
     try {
+      const formData=new FormData()
+      formData.append("username",username)
+      formData.append("email",email)
+      formData.append("password",password)
+      
+      if(profileImage){
+        formData.append("profileImage",profileImage)
+      }
+      
       const res = await fetch("http://localhost:3000/api/auth/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        
         credentials: "include",
-        body: JSON.stringify({
-          username,
-          email,
-          password
-        })
+        body: formData
       });
+      if(res.ok){
+        toast.success("User Created!")
+        toast.info("Now login to get started")
+        Navigate("/login")
+        
+      }
+      else{
+        toast.error("User already exists")
+      }
 
       const data = await res.json();
-      console.log(data);
+      
     } catch (err) {
+      toast.error("OOPS! Try again :)")
       console.error(err);
     }
   };
@@ -51,6 +68,8 @@ export default function Signup() {
                     type="file"
                     className="form-control"
                     name="profileImage"
+                    accept="image/*"
+                    onChange={(e) => setProfileImage(e.target.files[0])}
                 />
             </div>
         </div>

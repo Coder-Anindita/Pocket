@@ -1,10 +1,12 @@
 import { useState } from "react";
 import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
+  const navigate=useNavigate()
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -25,6 +27,15 @@ export default function Login() {
           password
         })
       });
+      if(res.ok){
+        toast.success("Yay! You are logged in")
+        navigate("/dashboard")
+      }
+      else{
+        toast.error("Login failed! Try again")
+      }
+      
+      
 
       const data = await res.json();
       console.log(data);

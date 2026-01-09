@@ -1,23 +1,24 @@
-import useAllIncome from "../hooks/useAllIncome";
+
 import Header from "../dashboard/Header.jsx"
-import LineGraph from "./LineGraph";
+import LineGraph from "./LineGraph.jsx";
 import SideMenu from "../dashboard/SideMenu.jsx";
-import IncomeSources from "./IncomeSources.jsx";
+import ExpenseSources from "./ExpenseSources.jsx";
 import { FaPlus } from "react-icons/fa6"
-import { useState,useEffect } from "react";
-import AddIncomeModal from "./AddIncomeModal.jsx";
+import { useState} from "react";
+import AddExpenseModal from "./AddExpenseModal.jsx";
+import useAllExpense from "../hooks/useAllExpense.js";
 
 
 
 
 
 
-export default function IncomePage(){
+export default function ExpensePage(){
     const [showModal, setShowModal] = useState(false);
     const [refresh, setRefresh] = useState(false);//added this to rerender
     
     
-    const income=useAllIncome(refresh)
+    const expense=useAllExpense(refresh)
     
     
 
@@ -36,12 +37,12 @@ export default function IncomePage(){
                     <div className="row mt-3 mx-2 p-5 border rounded-2 shadow  ">
                         <div className="d-flex " >
                             <div  className="mb-2">
-                                <h1 className="fs-4 mb-0 ">Income Overview</h1>
-                                <p className="text-secondary " style={{fontSize:"13px"}}>Track your earnings over time and analyze your income trends.</p>
+                                <h1 className="fs-4 mb-0 ">Expense Overview</h1>
+                                <p className="text-secondary " style={{fontSize:"13px"}}>Track your spending over time and gain insights into where your money goes.</p>
                             </div>
                             <div className=" ms-auto  " style={{fontSize:"13px"}}>
-                                <button className="btn btn-primary  " style={{height:"35px"}} onClick={()=>setShowModal(true)} ><FaPlus /> Add income</button>
-                                <AddIncomeModal
+                                <button className="btn btn-primary  " style={{height:"35px"}} onClick={()=>setShowModal(true)} ><FaPlus /> Add Expense</button>
+                                <AddExpenseModal
                                     show={showModal}
                                     onClose={() => {setShowModal(false); setRefresh(prev => !prev); }}
                                     
@@ -50,7 +51,7 @@ export default function IncomePage(){
                             </div>
                         </div>
                         <div className="" style={{height:"300px"}}>
-                            <LineGraph allIncomes={income}/>
+                            <LineGraph allExpenses={expense}/>
                         </div>
                     
                     
@@ -60,7 +61,7 @@ export default function IncomePage(){
 
                     </div>
                     <div className="row mt-5 mx-3">
-                        <div className=""><IncomeSources data={income} onSave={()=>{setRefresh(prev => !prev)}}/></div>
+                        <div className=""><ExpenseSources data={expense} onSave={()=>{setRefresh(prev => !prev)}}/></div>
                     </div>
                 </div>
 

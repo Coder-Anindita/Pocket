@@ -2,7 +2,7 @@ import {useState,useEffect} from "react"
 import { NavLink } from "react-router-dom"
 import { MdArrowRightAlt } from "react-icons/md";
 
-export default function Card({Component,data=[],isExpense=true} ){
+export default function Card({Component,data=[],isExpense=true,URL="/expense"} ){
 
 
     return(
@@ -11,7 +11,7 @@ export default function Card({Component,data=[],isExpense=true} ){
                 {isExpense?(<h1 className="mb-0 fs-3 mb-4">Expense</h1>):(<h1 className="mb-0 fs-3 mb-4">Income</h1>)}
                 
 
-                <NavLink to="" className="ms-auto px-2 rounded text-center" style={{backgroundColor:"#eeeeee",textDecoration: "none"}}>
+                <NavLink to={URL} className="ms-auto px-2 rounded text-center" style={{backgroundColor:"#eeeeee",textDecoration: "none"}}>
                     See All <MdArrowRightAlt />
                 </NavLink>
             </div>

@@ -7,7 +7,7 @@ export default function ProtectedRoute({children}){
     useEffect(()=>{
         const checkAuth=async()=>{
             try{
-                const res = await fetch("http://localhost:3000/api/me", {
+                const res = await fetch("https://pocket-vycm.onrender.com/api/me", {
                     credentials: "include",
                 });
 

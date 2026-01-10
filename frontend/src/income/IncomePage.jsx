@@ -59,7 +59,7 @@ export default function IncomePage(){
 
 
                     </div>
-                    <div className="row mt-5 mx-3">
+                    <div className="row mt-5 ">
                         <div className=""><IncomeSources data={income} onSave={()=>{setRefresh(prev => !prev)}}/></div>
                     </div>
                 </div>

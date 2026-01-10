@@ -29,7 +29,7 @@ export default function ProtectedRoute({children}){
         }
         checkAuth();
     },[])
-        if (loading) {
+        if (loading || isAuth===false) {
             return <p className="text-center mt-5">Checking authentication...</p>;
         }
       if (!isAuth) {

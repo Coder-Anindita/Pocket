@@ -13,6 +13,7 @@ import userRoutes from "./routes/user.route.js"
 
 
 const app=express()
+app.set("trust proxy", 1); 
 app.use(cors({
     origin: [
     "https://pocket-git-main-anindita-chakrabortys-projects.vercel.app",

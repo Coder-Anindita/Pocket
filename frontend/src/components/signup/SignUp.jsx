@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {Link} from "react-router-dom"
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -9,7 +9,7 @@ export default function Signup() {
   const [submitted, setSubmitted] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
   
-
+  const navigate = useNavigate();
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -36,7 +36,7 @@ export default function Signup() {
       if(res.ok){
         toast.success("User Created!")
         toast.info("Now login to get started")
-        Navigate("/login")
+        navigate("/login")
         
       }
       else{
